@@ -1,5 +1,5 @@
 const { Command } = require('discord-akairo');
-
+const {createMember} = require("../lib/db");
 class DebugCommand extends Command {
     constructor() {
         super('debug', {
@@ -11,9 +11,11 @@ class DebugCommand extends Command {
                 }
             ]
         })
+
     }
 
     exec(message, args){
+
         if(!message.member.roles.find(r => r.name === "Administrator") || !message.member.roles.find(r => rname === "Leadership")){
             message.reply("That doesn't sound like anything I know");
             //message.react("?")

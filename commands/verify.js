@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
-const { getClient, getUserByEmail } = require('../lib/whmcs.js')
+const { getClient, getUserByEmail } = require('../lib/whmcs.js');
+const { createMember } = require('../lib/db');
 
 class VerifyCommand extends Command {
     constructor() {
@@ -18,13 +19,14 @@ class VerifyCommand extends Command {
     async exec(message, args) {
         const MembershipRole = message.guild.roles.cache.find(role => role.name === "Member");
         message.delete();
-        console.log(args)
+        
         if(args.email == null){
             message.reply("You said ?verify but you didn't give me an email. Try: `?verify email@example.com`");
             return;
         }
         const { email } = args;
         let results = await getUserByEmail(this.whmcs_client, email);
+        console.log(results);
         if(!results){
             message.reply("I can't find that email maybe try another one");
             return;
@@ -46,7 +48,7 @@ class VerifyCommand extends Command {
         }catch(e){
             console.error(e)
         }
-
+        createMember({whmcs_id: id, email, discord_id: message.member.id, status: true});
         message.reply("I found you, your account is now linked");
 
     }
