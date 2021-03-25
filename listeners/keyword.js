@@ -41,14 +41,17 @@ const keywords = [
             "kroger"
         ],
         response: "Register your Kroger card here: http://www.krogercommunityrewards.com/ TheLab.ms #55069"
-    },
-    {
-        phrases: [
-            "amazon.com"
-        ],
-        response: "https://smile.amazon.com/ch/46-4432080"
     }
 ];
+
+const expressions = [
+    {
+        title: "AMAZON_LINK",
+        regex: new RegExp(/https?:\/\/(?=(?:....)?amazon|smile)(www|smile)\S+com(((?:\/(?:dp|gp)\/([A-Z0-9]+))?\S*[?&]?(?:tag=))?\S*?)(?:#)?(\w*?-\w{2})?(\S*)(#?\S*)+/),
+        captureIndex: 1
+    }
+]
+
 const { Listener } = require('discord-akairo');
 
 class KeywordListener extends Listener {
@@ -75,6 +78,33 @@ class KeywordListener extends Listener {
                 }
             })
         })
+
+        expressions.forEach(({title, regex, captureIndex}) => {
+            const match = message.content.match(regex);
+            let output = "";
+            if(match === null || match === undefined || match[captureIndex] === null || match[captureIndex] === undefined){
+                return;
+            }
+            switch(title){
+                case "AMAZON_LINK":
+                    output = this.amazonlink({subdomain: match[captureIndex], url: match[0]});
+                    break;
+            }
+            if(output){
+                message.reply(output);
+            }
+        })
+    }
+
+    amazonlink({subdomain, url}){
+        if(subdomain === "smile"){
+            return null;
+        }
+        if(subdomain === "www"){
+            return "You mean " + url.replace("www.", "smile.");
+        }
+        return null;
+
     }
 }
 
