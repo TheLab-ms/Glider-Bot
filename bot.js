@@ -1,10 +1,10 @@
-const { DISCORD_TOKEN } = process.env;
+const { DISCORD_TOKEN, OWNER_ID: ownerID } = process.env;
 const { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } = require('discord-akairo');
 
 class MyClient extends AkairoClient {
     constructor() {
         super({
-            ownerID: '123992700587343872',
+            ownerID,
         }, {
             disableMentions: 'everyone'
         });
