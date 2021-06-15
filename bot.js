@@ -1,4 +1,3 @@
-require('dotenv').config()
 const { DISCORD_TOKEN } = process.env;
 const { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } = require('discord-akairo');
 
