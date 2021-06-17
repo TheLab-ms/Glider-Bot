@@ -48,7 +48,7 @@ const keywords = [
             "give me my fob",
 	    "pick up my fob"
         ],
-	response: "https://kb.thelab.ms/display/THELAB/How+to+Add+a+Keyfob"
+	response: "Hey, did you know you can activate your own keyfob? https://kb.thelab.ms/display/THELAB/How+to+Add+a+Keyfob"
     }
 ];
 
