@@ -41,6 +41,14 @@ const keywords = [
             "kroger"
         ],
         response: "Register your Kroger card here: http://www.krogercommunityrewards.com/ TheLab.ms #55069"
+    },
+    {
+        phrases: [
+            "get my fob",
+            "give me my fob",
+	    "pick up my fob"
+        ],
+	response: "https://kb.thelab.ms/display/THELAB/How+to+Add+a+Keyfob"
     }
 ];
 
