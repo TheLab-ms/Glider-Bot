@@ -15,9 +15,6 @@ module.exports = {
         await button.execute(interaction, args);
       } catch (error) {
         console.error(error); // Since we don't know what every button will do, we can't tell the user
-        if (process.env.NODE_ENV === "production") {
-          Sentry.captureException(error);
-        }
       }
     }
 
@@ -31,9 +28,6 @@ module.exports = {
       await command.execute(interaction);
     } catch (error) {
       console.error(error);
-      if (process.env.NODE_ENV === "production") {
-        Sentry.captureException(error);
-      }
       await interaction.editReply({
         content: "There was an error while executing this command!",
         ephemeral: true,
