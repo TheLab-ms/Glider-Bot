@@ -1,32 +1,25 @@
-const { DISCORD_TOKEN, OWNER_ID: ownerID } = process.env;
-const { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } = require('discord-akairo');
+require("dotenv").config();
 
-class MyClient extends AkairoClient {
-    constructor() {
-        super({
-            ownerID,
-        }, {
-            disableMentions: 'everyone'
-        });
+const { DISCORD_TOKEN } = process.env;
+const { Client, Intents } = require("discord.js");
+const deployCommands = require("./lib/deploy-commands");
+const { loadCommands, loadEvents } = require("./lib/setup");
 
-        this.commandHandler = new CommandHandler(this, {
-            directory: './commands/',
-            prefix: '?'
-        });
+deployCommands();
 
-        this.inhibitorHandler = new InhibitorHandler(this, {
-            directory: './inhibitors/'
-        });
+const client = new Client({
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+  ],
+});
 
-        this.listenerHandler = new ListenerHandler(this, {
-            directory: './listeners/'
-        });
+client.commands = loadCommands();
+loadEvents(client);
 
-        this.commandHandler.loadAll();
-        this.commandHandler.useListenerHandler(this.listenerHandler);
-        this.listenerHandler.loadAll();
-    }
-}
+client.on("ready", () => {
+  client.user.setActivity("Game of Life", { type: "PLAYING" });
+});
 
-const client = new MyClient();
 client.login(DISCORD_TOKEN);
