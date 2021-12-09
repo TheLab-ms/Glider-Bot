@@ -2,7 +2,7 @@ const { execute } = require("./message");
 
 module.exports = {
   event: "interactionCreate",
-  async execute(interaction) {
+  async execute(interaction, client) {
     if (!interaction.isCommand() && !interaction.isButton()) return;
 
     if (interaction.isButton()) {

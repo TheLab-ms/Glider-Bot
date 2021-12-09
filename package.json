@@ -5,7 +5,6 @@
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
-    "dev-setup": "node dev.js",
     "develop": "node -r dotenv/config bot.js"
   },
   "repository": {
