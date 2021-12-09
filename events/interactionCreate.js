@@ -1,5 +1,3 @@
-const { execute } = require("./message");
-
 module.exports = {
   event: "interactionCreate",
   async execute(interaction, client) {
