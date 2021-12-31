@@ -5,7 +5,6 @@
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
-    "dev-setup": "node dev.js",
     "develop": "node -r dotenv/config bot.js"
   },
   "repository": {
@@ -20,11 +19,12 @@
   },
   "homepage": "https://github.com/ATechAdventurer/Glider-Bot#readme",
   "dependencies": {
-    "discord-akairo": "^8.1.0",
-    "discord.js": "^12.5.1",
-    "dotenv": "^8.6.0",
-    "sequelize": "^6.5.0",
-    "sqlite3": "^5.0.2",
-    "whmcs-js": "^2.0.1"
+    "@discordjs/builders": "^0.8.2",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "axios": "^0.24.0",
+    "discord-api-types": "^0.24.0",
+    "discord.js": "^13.3.1",
+    "dotenv": "^10.0.0",
+    "reading-time": "^1.5.0"
   }
 }
