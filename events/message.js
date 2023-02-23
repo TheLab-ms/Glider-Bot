@@ -35,10 +35,12 @@ function keyWordFinder(interaction) {
     }
     switch (title) {
       case "AMAZON_LINK":
-        output = amazonlink({
-          subdomain: match[captureIndex],
-          url: match[0],
-        });
+        //Defunct 20230220
+        output = "We reallu miss our amazon smile."
+        // output = amazonlink({
+        //   subdomain: match[captureIndex],
+        //   url: match[0],
+        // });
         break;
     }
     if (output) {
