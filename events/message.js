@@ -36,7 +36,7 @@ function keyWordFinder(interaction) {
     switch (title) {
       case "AMAZON_LINK":
         //Defunct 20230220
-        output = "We reallu miss our amazon smile."
+        output = "We really miss our amazon smile."
         // output = amazonlink({
         //   subdomain: match[captureIndex],
         //   url: match[0],
